@@ -2,6 +2,9 @@ import telebot
 import os
 from flask import Flask, request
 from news import *
+from bs4 import BeautifulSoup
+import requests
+from googletrans import Translator
 
 headers = {'User-agent': 'Mozilla/5.0'}
 
