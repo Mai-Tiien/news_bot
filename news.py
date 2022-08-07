@@ -13,7 +13,7 @@ soup = BeautifulSoup(html, 'html.parser')
 def football(keyword):
     news_list = []
 
-    for h in soup.findAll('a', class_='news-list__headline-link'):
+    for h in soup.findAll(['a', 'p'], class_=['news-list__headline-link', 'news-list__snippet'], limit=10):
         news_title = h.contents[0].lower()
 
         if news_title not in news_list:
@@ -30,5 +30,6 @@ def football(keyword):
             tee = str(res)+'\n'
             file.write(tee.replace("(", "").replace(")","").replace("'","").replace(",","."))
     with open('out.txt', encoding='utf-8') as f:
-        contents = f.read()        
-    return contents
+        contents = f.read()      
+        return contents
+                
