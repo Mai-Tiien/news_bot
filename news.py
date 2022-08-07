@@ -10,7 +10,7 @@ server = Flask(__name__)
 @bot.message_handler(content_types=['text'])
 def main(message):
     if message.text == '/start':
-        bot.reply_to(message, 'Привіт')
+        bot.reply_to(message, 'Привіт {name}'.format(name = message.chat.first_name))
     elif message.text == '/news':
         bot.reply_to(message, 'Йде обробка...')
         bot.send_message(message.from_user.id, football('football'))   
