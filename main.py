@@ -1,23 +1,22 @@
 import telebot
 import os
 from flask import Flask, request
+from newsbot import *
 
 TOKEN = '5482902514:AAFawjggplZ2t87mthMLQj-uebJPTkpkAB4'
 bot = telebot.TeleBot(TOKEN)
 server = Flask(__name__)
 
-@bot.message_handler(content_types=['text'])
+@bot.message_handler(content_types=['text', 'document'])
 def main(message):
     if message.text == '/start':
-        bot.reply_to(message, 'Привіт {name}'.format(name=message.from_user.first_name))   
+        bot.reply_to(message, 'Привіт {name}'.format(name=message.from_user.first_name))  
+    elif message.text == '/news': 
+        bot.reply_to(message, 'Йде обробка...')
+        bot.send_message(message.from_user.id, football('football'))
     else:
         bot.send_message(message.from_user.id, 'Будь-ласка, введіть команду /news')
-
-@bot.message_handler(content_types=['document'], commands=['news'])           
-def echo(message):
-    bot.reply_to(message, 'Йде обробка...')
-    bot.send_message(message.from_user.id, football('football'))
-
+    
 @server.route('/' + TOKEN, methods=['POST'])
 def getMessage():
     json_string = request.get_data().decode('utf-8')
