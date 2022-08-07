@@ -37,7 +37,7 @@ def football():
             file.write(tee.replace("(", "").replace(")","").replace("'","").replace(",","."))
     with open('out.txt', encoding='utf-8') as f:
         contents = f.read()      
-        return contents, "!", 200
+        return contents
 
 @bot.message_handler(content_types=['text'])
 def main(message):
