@@ -32,7 +32,7 @@ def echo_video(message):
 @bot.message_handler(func=lambda message: True, content_types=['stiker'])
 def echo_video(message):
     bot.send_message(message.from_user.id, "Відправка відео від @{name} десь там 👇".format(name=message.chat.first_name), parse_mode="Markdown")
-    bot.send_stiker(message.from_user.id, message.stiker)
+    bot.send_stiker(message.from_user.id, file_id)
     bot.reply_to(message, "Дякую за відео-контент! Контент відправлено на огляд.")
 
     
