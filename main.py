@@ -29,10 +29,10 @@ def echo_video(message):
     bot.send_video(message.from_user.id, message.video.file_id, timeout=10)
     bot.reply_to(message, "Дякую за відео-контент! Контент відправлено на огляд.")
 
-@bot.message_handler(func=lambda message: True, content_types=['stiker'])
+@bot.message_handler(func=lambda message: True, content_types=['sticker'])
 def echo_video(message):
     bot.send_message(message.from_user.id, "Відправка відео від @{name} десь там 👇".format(name=message.chat.first_name), parse_mode="Markdown")
-    bot.send_stiker(message.from_user.id, file_id)
+    bot.send_sticker(message.from_user.id, message.sticker)
     bot.reply_to(message, "Дякую за відео-контент! Контент відправлено на огляд.")
 
     
